@@ -1,4 +1,33 @@
-# Welcome to your Expo app 👋
+# Expo 57 / React Native 0.87 C++ Animated test app
+
+This app intentionally runs Expo SDK 57 with React Native 0.87.1 to exercise
+React Native's C++ Native Animated implementation. The native build uses the
+stable release-level defaults with one override:
+
+- `cxxNativeAnimatedEnabled`: `true`
+- `useSharedAnimatedBackend`: `false`
+
+Open the **RNTester** tab to see the values read from the running binary and to
+run the focused Native Animated tests.
+
+This is an experimental version combination: Expo SDK 57 normally targets
+React Native 0.86. The checked-in `patch-package` patches provide the small
+React Native and Expo compatibility changes needed by this app. Keep the exact
+dependency versions in `package.json`; running `npx expo install --fix` would
+restore Expo's default React Native version.
+
+## Build and run
+
+```bash
+npm ci
+npm run ios
+```
+
+The app must use a development build; Expo Go does not contain this custom
+React Native binary. `expo-build-properties` is configured to build React
+Native from source.
+
+## Original Expo starter notes
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 

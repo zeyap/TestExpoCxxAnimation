@@ -1,0 +1,41 @@
+diff --git a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android.kt b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android.kt
+index e4405f3..bc9d3c5 100644
+--- a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android.kt
++++ b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/internal/featureflags/ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android.kt
+@@ -8,4 +8,6 @@
+ package com.facebook.react.internal.featureflags
+ 
+ public class ReactNativeFeatureFlagsOverrides_RNOSS_Stable_Android() :
+-    ReactNativeNewArchitectureFeatureFlagsDefaults()
++    ReactNativeNewArchitectureFeatureFlagsDefaults() {
++  override fun cxxNativeAnimatedEnabled(): Boolean = true
++}
+diff --git a/node_modules/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsOverridesOSSStable.h b/node_modules/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsOverridesOSSStable.h
+index e40b317..43b0719 100644
+--- a/node_modules/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsOverridesOSSStable.h
++++ b/node_modules/react-native/ReactCommon/react/featureflags/ReactNativeFeatureFlagsOverridesOSSStable.h
+@@ -13,6 +13,10 @@ namespace facebook::react {
+ 
+ class ReactNativeFeatureFlagsOverridesOSSStable : public ReactNativeFeatureFlagsDefaults {
+  public:
++  bool cxxNativeAnimatedEnabled() override
++  {
++    return true;
++  }
+   bool enableBridgelessArchitecture() override
+   {
+     return true;
+diff --git a/node_modules/react-native/rn-get-polyfills.js b/node_modules/react-native/rn-get-polyfills.js
+new file mode 100644
+index 0000000..b5cbc8a
+--- /dev/null
++++ b/node_modules/react-native/rn-get-polyfills.js
+@@ -0,0 +1,8 @@
++/**
++ * Compatibility entry for Expo SDK 57's Metro config.
++ * React Native 0.87 removed this forwarding module.
++ */
++
++'use strict';
++
++module.exports = require('@react-native/js-polyfills');
